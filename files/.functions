@@ -147,3 +147,9 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+function webstorm() {
+  for dir in ~/WebStorm*; do
+    eval "${dir}/bin/webstorm.sh"
+  done;
+}
