@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+shopt -s expand_aliases
+
 for file in ~/.{bash_prompt,exports,aliases,functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
