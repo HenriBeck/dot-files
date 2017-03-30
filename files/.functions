@@ -148,8 +148,10 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
-function webstorm() {
-  for dir in ~/WebStorm*; do
-    eval "${dir}/bin/webstorm.sh"
-  done;
+function encrypt() {
+  openssl des3 -salt -in $1 -out "$1.encrypted"
+}
+
+function decrypt() {
+  openssl des3 -d -salt -in $1
 }
