@@ -24,3 +24,5 @@ load-nvmrc() {
 }
 
 cd() { builtin cd "$@"; 'load-nvmrc'; }
+
+'load-nvmrc'
