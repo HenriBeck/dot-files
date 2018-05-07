@@ -1,21 +1,17 @@
 #!/usr/bin/env bash
 
+# Open current directory in finder
+alias finder="open ."
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-# Install, update and remove
-alias install="sudo apt-get install"
-alias upgrade="sudo apt-get upgrade"
-alias update="sudo apt-get update"
-alias remove="sudo apt-get remove"
-
 # Shortcuts
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias github="cd ~/Desktop/GitHub"
 alias h="cd ~/"
 
 # Detect which `ls` flavor is in use
