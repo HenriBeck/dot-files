@@ -2,7 +2,7 @@
 
 shopt -s expand_aliases
 
-for file in ~/.{bash_prompt,exports,aliases,functions}; do
+for file in ~/.{bash_prompt,bash_exports,bash_aliases,bash_functions,bash_options}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 
