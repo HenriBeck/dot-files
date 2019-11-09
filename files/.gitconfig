@@ -1,6 +1,5 @@
 [user]
 	name = Henri Beck
-	email = henribeck.dev@gmail.com
 
 [github]
     user = HenriBeck
@@ -121,7 +120,7 @@
 
 [core]
   autocrlf = false
-  editor = webstorm
+  editor = nano
   excludesfile = ~/dot-files/git/gitignore
 
 [advice]
