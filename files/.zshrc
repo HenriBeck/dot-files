@@ -2,9 +2,12 @@
 
 # shopt -s expand_aliases
 
-for file in ~/.{bash_prompt,bash_exports,bash_aliases,bash_functions}; do
+for file in ~/.{bash_exports,bash_aliases,bash_functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
+
+autoload -U promptinit; promptinit
+prompt pure
 
 # fnm
 export PATH=$HOME/.fnm:$PATH
