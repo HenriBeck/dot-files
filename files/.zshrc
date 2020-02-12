@@ -24,6 +24,9 @@ export FNM_MULTISHELL_PATH=/Users/henri.beck/.fnm/current
 export FNM_DIR=/Users/henri.beck/.fnm
 export FNM_NODE_DIST_MIRROR=https://nodejs.org/dist
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # Flutter
 export PATH="$PATH:/Users/henri.beck/flutter/bin"
 
