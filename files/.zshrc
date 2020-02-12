@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-shopt -s expand_aliases
+# shopt -s expand_aliases
 
 for file in ~/.{bash_prompt,bash_exports,bash_aliases,bash_functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
@@ -14,9 +14,6 @@ eval "`fnm env --multi`"
 if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
 	complete -o default -o nospace -F _git g;
 fi;
-
-# Load nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # FNM
 export PATH=/Users/henri.beck/.fnm/current/bin:$PATH
