@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Set default editor to vscode
-export EDITOR="webstorm"
+export EDITOR="code"
 
 # Ignore duplicate commands in the history
 export HISTCONTROL=ignoredups

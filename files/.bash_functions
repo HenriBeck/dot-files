@@ -27,15 +27,6 @@ if [ $? -eq 0 ]; then
 	}
 fi;
 
-# Create a git.io short URL
-function gitio() {
-	if [ -z "${1}" -o -z "${2}" ]; then
-		echo "Usage: \`gitio slug url\`";
-		return 1;
-	fi;
-	curl -i https://git.io/ -F "url=${2}" -F "code=${1}";
-}
-
 # Syntax-highlight JSON strings or files
 # Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
 function json() {
@@ -69,33 +60,6 @@ function unidecode() {
 	fi;
 }
 
-# Get a character’s Unicode code point
-function codepoint() {
-	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
-	# print a newline unless we’re piping the output to another program
-	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
-}
-
-# `o` with no arguments opens the current directory, otherwise opens the given
-# location
-function o() {
-	if [ $# -eq 0 ]; then
-		open .;
-	else
-		open "$@";
-	fi;
-}
-
-# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
-# the `.git` directory, listing directories first. The output gets piped into
-# `less` with options to preserve color and line numbers, unless the output is
-# small enough for one screen.
-function tre() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
-}
-
-fr() {
+function fr() {
   flutter pub pub run "$@";
 }

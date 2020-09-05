@@ -2,7 +2,7 @@
 
 # shopt -s expand_aliases
 
-for file in ~/.{bash_exports,bash_aliases,bash_functions}; do
+for file in ~/.{bash_exports,bash_aliases,bash_functions,bash_options}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 
@@ -29,9 +29,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Flutter
 export PATH="$PATH:/Users/henri.beck/flutter/bin"
+export PATH=$PATH:$HOME/.pub-cache/bin
 
 # GRPC
-export PATH=$PATH:$HOME/.pub-cache/bin
 export PATH=$PATH:$HOME
 
 # Android studio
@@ -53,4 +53,4 @@ __fnmcd() {
 
 alias cd=__fnmcd
 
-fnm use 10
+fnm use default
