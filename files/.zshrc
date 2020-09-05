@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
-# shopt -s expand_aliases
-
-for file in ~/.{bash_exports,bash_aliases,bash_functions,bash_options}; do
+for file in ~/.{zsh_exports,zsh_aliases,zsh_functions,zsh_options}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 
-autoload -U promptinit; promptinit
+# Add the zsh pure prompt theme to the path
+fpath+=$HOME/.zsh/pure
+
+autoload -Uz promptinit
+promptinit
 prompt pure
 
 # fnm
