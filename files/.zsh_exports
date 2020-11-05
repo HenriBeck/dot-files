@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Set default editor to vscode
-export EDITOR="code"
+export EDITOR="nano"
 
 # Ignore duplicate commands in the history
 export HISTCONTROL=ignoredups
