@@ -4,6 +4,10 @@ for file in ~/.{zsh_exports,zsh_aliases,zsh_functions,zsh_options}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 
+if [ -d "/opt/homebrew/bin" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
 # Add the zsh pure prompt theme to the path
 fpath+=$HOME/.zsh/pure
 
