@@ -4,10 +4,6 @@ for file in ~/.{zsh_exports,zsh_aliases,zsh_functions,zsh_options}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 
-if [ -d "/opt/homebrew/bin" ]; then
-    export PATH="/opt/homebrew/bin:$PATH"
-fi
-
 # Add the zsh pure prompt theme to the path
 fpath+=$HOME/.zsh/pure
 
@@ -15,48 +11,55 @@ autoload -Uz promptinit
 promptinit
 prompt pure
 
-# fnm
-export PATH=$HOME/.fnm:$PATH
-eval "`fnm env --multi`"
-
 # Enable tab completion for `g` by marking it as an alias for `git`
 if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
 	complete -o default -o nospace -F _git g;
 fi;
 
-# FNM
-export PATH=/Users/henri.beck/.fnm/current/bin:$PATH
-export FNM_MULTISHELL_PATH=/Users/henri.beck/.fnm/current
-export FNM_DIR=/Users/henri.beck/.fnm
-export FNM_NODE_DIST_MIRROR=https://nodejs.org/dist
+# Homebrew support for M1
+if [ -d "/opt/homebrew/bin" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+# https://github.com/Schniz/fnm
+if [ -d "$HOME/.fnm" ]; then
+  export FNM_DIR=$HOME/.fnm
+  export FNM_MULTISHELL_PATH=$FNM_DIR/current
+  export PATH=$FNM_DIR:$FNM_DIR/current/bin:$PATH
+  export FNM_NODE_DIST_MIRROR=https://nodejs.org/dist
+  
+  eval "$(fnm env)"
+  fnm use default
+
+  __fnmcd() {
+    cd $@
+
+    if [[ -f .node-version && .node-version ]]; then
+      fnm use
+    elif [[ -f .nvmrc && .nvmrc ]]; then
+      fnm use
+    fi
+  }
+
+  alias cd=__fnmcd
+fi
 
 # Rust
-export PATH="$HOME/.cargo/bin:$PATH"
+if [ -d "$HOME/.cargo" ]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 # Flutter
-export PATH="$PATH:/Users/henri.beck/flutter/bin"
-export PATH=$PATH:$HOME/.pub-cache/bin
-
-# GRPC
-export PATH=$PATH:$HOME
+if [ -d "$HOME/flutter" ]; then
+  export PATH="$HOME/flutter/bin:$PATH"
+  export PATH="$HOME/.pub-cache/bin:$PATH"
+fi
 
 # Android studio
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-__fnmcd() {
-  cd $@
-
-  if [[ -f .node-version && .node-version ]]; then
-    fnm use
-  elif [[ -f .nvmrc && .nvmrc ]]; then
-    fnm use
-  fi
-}
-
-alias cd=__fnmcd
-
-fnm use default
+if [ -d "$HOME/Library/Android" ]; then 
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=$PATH:$ANDROID_HOME/emulator
+  export PATH=$PATH:$ANDROID_HOME/tools
+  export PATH=$PATH:$ANDROID_HOME/tools/bin
+  export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
