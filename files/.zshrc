@@ -18,7 +18,7 @@ fi;
 
 # Homebrew support for M1
 if [ -d "/opt/homebrew/bin" ]; then
-    export PATH="/opt/homebrew/bin:$PATH"
+  eval $(/opt/homebrew/bin/brew shellenv)
 fi
 
 # https://github.com/Schniz/fnm
